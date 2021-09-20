@@ -9,7 +9,7 @@ static int	cnt_d(const char *s, char c)
 	delimiter = 0;
 	while (s)
 	{
-		if (s[i] == c &&)
+		if (s[i] == c)
 			delimiter ++;
 		i ++;
 	}
@@ -59,14 +59,15 @@ static int	do_split(char **split, const char *s, char c)
 			delimiter ++;
 		}
 	}
+	return (0);
 }
-	
+
 char	**ft_split(char const *s, char c)
 {
 	char **split;
 	int	delimiter;
 
-	delimter = cnt_d(s, c);
+	delimiter = cnt_d(s, c);
 	if (!(split = (char **)malloc(sizeof(char *) * (delimiter + 1))))
 		return (0);
 	if (do_split(split, s, c) == -1)

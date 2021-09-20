@@ -47,7 +47,7 @@ char *ft_itoa(int n)
 		i ++;
 	}
 	if (is_neg)
-		str[len] = '-';
+		str[i] = '-';
 	ft_strrev(str);
 	return (str);
 }

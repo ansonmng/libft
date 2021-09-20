@@ -9,7 +9,7 @@ static int ft_char_in_set(char c, char const *set)
 	{
 		if (set[i] == c)
 		{
-			retrun (1)
+			return (1);
 		}
 		i ++;
 	}
