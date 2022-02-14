@@ -282,10 +282,5 @@ int	main(int argc, char const *argv[])
 
 	printf("---strjoin---")
 	
-
-
-
-
-
 	return 0;
 }
