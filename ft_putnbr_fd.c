@@ -1,35 +1,17 @@
 #include "libft.h"
 
-static int	ft_abs(int nbr)
+void	ft_putnbr_fd(int nb, int fd)
 {
-	if (nbr < 0)
-		return (-nbr);
-	else 
-		return (nbr);
-}
+	unsigned int	nbr;
 
-void	ft_putnbr_fd(int n, int fd)
-{
-	char s[13];
-	int	is_neg;
-	int i;
-
-	if (n < 0)
-		is_neg = 1;
-	ft_bzero(s, 13);
-	if (n == 0)
-		s[0] = 0;
-	i = 0;
-	while (n != 0)
+	if (nb < 0)
 	{
-		s[i] = '0' + ft_abs(n % 10);
-		n = (n / 10);
-		i ++;
+		ft_putchar_fd('-', fd);
+		nbr = (unsigned int)(nb * -1);
 	}
-	if (is_neg)
-		s[i] = '-';
-	else if (i > 0)
-		i --;
-	while (i >= 0)
-		write(fd, &s[i --], 1);
+	else
+		nbr = (unsigned int)nb;
+	if (nbr >= 10)
+		ft_putnbr_fd(nbr / 10, fd);
+	ft_putchar_fd((char)(nbr % 10 + '0'), fd);
 }

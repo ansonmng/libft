@@ -1,76 +1,62 @@
 #include "libft.h"
 
-static int	cnt_d(const char *s, char c)
+static int	cnt_delimiter(const char *str, char c)
 {
-	int	i;
-	int	delimiter;
+	int i;
+	int trigger;
 
 	i = 0;
-	delimiter = 0;
-	while (s)
+	trigger = 0;
+	while (*str)
 	{
-		if (s[i] == c)
-			delimiter ++;
-		i ++;
+		if (*str != c && trigger == 0)
+		{
+			trigger = 1;
+			i++;
+		}
+		else if (*str == c)
+			trigger = 0;
+		str++;
 	}
-	return (delimiter);
+	return (i);
 }
 
-static int	release(char **s, int size)
+static char	*word_dup(const char *str, int start, int end)
 {
-	while (size --)
-		free (s[size]);
-	return (-1);
-}
+	char	*word;
+	int		i;
 
-static void	write_split(char *dest, const char *source, char c)
-{
-	int	i;
 	i = 0;
-	while (source[i] != c || source[i] != '\0')
+	word = malloc((end - start + 1) * sizeof(char));
+	while (start < end)
+		word[i++] = str[start++];
+	word[i] = '\0';
+	return (word);
+}
+
+char		**ft_split(char const *s, char c)
+{
+	size_t	i;
+	size_t	j;
+	int		index;
+	char	**split;
+
+	if (!s || !(split = malloc((cnt_delimiter(s, c) + 1) * sizeof(char *))))
+		return (0);
+	i = 0;
+	j = 0;
+	index = -1;
+	while (i <= ft_strlen(s))
 	{
-		dest[i] = source[i];
+		if (s[i] != c && index < 0)
+			index = i;
+		else if ((s[i] == c || i == ft_strlen(s)) && index >= 0)
+		{
+			split[j++] = word_dup(s, index, i);
+			index = -1;
+		}
 		i++;
 	}
-	dest[i] = '\0';
-}
-
-static int	do_split(char **split, const char *s, char c)
-{
-	int	i;
-	int	j;
-	int	delimiter;
-	
-	i = 0;
-	delimiter = 0;
-	while (s)
-	{
-		if (s[i] == c)
-			i ++;
-		else
-		{
-			j = 0;
-			while (s[i + j] != c || s[i + j] != '\0')
-				j ++;
-			if (!(split[delimiter] = (char *)malloc(sizeof(char) * (j + i))))
-				return (release(split, delimiter - 1));
-			write_split(split[delimiter], s + i, c);
-			i += j;
-			delimiter ++;
-		}
-	}
-	return (0);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	char **split;
-	int	delimiter;
-
-	delimiter = cnt_d(s, c);
-	if (!(split = (char **)malloc(sizeof(char *) * (delimiter + 1))))
-		return (0);
-	if (do_split(split, s, c) == -1)
-		return (0);
+	split[j] = 0;
 	return (split);
 }
