@@ -16,7 +16,7 @@ int	main(int argc, char const *argv[])
 	printf("%d\n", ft_isdigit(32));
 	printf("---isalnum--");
 	printf("%d\n", ft_isalnum(32));
-	printf("---isascii--");
+	/*printf("---isascii--");
 	printf("%d\n", ft_isascii(32));
 	printf("---isprint--");
 	printf("%d\n", ft_isprint(32));
@@ -281,6 +281,6 @@ int	main(int argc, char const *argv[])
 	printf("\n");
 
 	printf("---strjoin---")
-	
+	*/
 	return 0;
 }

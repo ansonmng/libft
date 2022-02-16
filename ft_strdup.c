@@ -2,8 +2,8 @@
 
 char	*ft_strdup(const char *s1)
 {
-	char *str;
-	size_t i;
+	char	*str;
+	size_t	i;
 
 	if (!s1)
 		return (0);
