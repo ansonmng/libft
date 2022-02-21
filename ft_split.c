@@ -32,6 +32,7 @@ static char	*word_dup(const char *str, int start, int end)
 		word[i++] = str[start++];
 	word[i] = '\0';
 	return (word);
+	free(word);
 }
 
 char	**ft_split(char const *s, char c)
