@@ -6,7 +6,7 @@
 /*   By: nansonm <nansonm@student.42.kl>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 16:10:16 by nansonm           #+#    #+#             */
-/*   Updated: 2022/02/21 16:29:22 by nansonm          ###   ########.fr       */
+/*   Updated: 2022/02/21 16:34:12 by nansonm          ###   ########.kl       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ static int	ft_abs(int nb)
 {
 	if (nb < 0)
 		return (nb = -nb);
-	else 
+	else
 		return (nb);
+}
 
 static void	ft_strrev(char *str)
 {
@@ -43,7 +44,7 @@ char	*ft_itoa(int n)
 	size_t	len;
 
 	is_neg = (n < 0);
-	str = ft_calloc(11 + is_neg, sizeof(*str);
+	str = ft_calloc(11 + is_neg, sizeof(*str));
 	if (!str)
 		return (NULL);
 	if (n == 0)
